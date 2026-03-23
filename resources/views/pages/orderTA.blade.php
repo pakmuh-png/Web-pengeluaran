@@ -9,7 +9,7 @@
     @vite(['resources/css/app.css'])
 </head>
 
-<body class="bg-gradient-to-b from-[#C2B280] via-[#9e790b] to-[#C2B280] min-h-screen text-amber-950">
+<body class="bg-gradient-to-b from-[#362f1a] via-[#9e790b] to-[#C2B280] min-h-screen text-amber-950">
     @include('components.navbar')
 
     <section class="pt-28 pb-16">
@@ -43,44 +43,27 @@
                             <div class="flex flex-col gap-2">
                                 <label for="material_code" class="text-sm font-semibold text-amber-900 tracking-wide">MATERIAL CODE SAP *</label>
                                 <div class="relative">
-                                    <!-- Hidden input for form submission -->
                                     <input type="hidden" id="material_code_hidden" name="material_code" required>
 
-                                    <!-- Custom dropdown container -->
-                                    <div class="filament-dropdown">
-                                        <!-- Search input -->
-                                        <div class="relative">
-                                            <input type="text" id="material_code_search"
-                                                placeholder="Cari material code..."
-                                                class="w-full rounded-t-xl border border-amber-100/70 px-4 py-3 pr-10 text-sm focus:ring-2 focus:ring-amber-400 focus:border-transparent bg-white shadow-inner">
-                                            <div class="absolute inset-y-0 right-0 flex items-center pr-3">
-                                                <svg class="h-5 w-5 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                                                </svg>
-                                            </div>
-                                        </div>
+                                    <input type="text" id="material_code_search" placeholder="Cari Material Code..."
+                                        class="w-full rounded-xl border border-amber-100/70 px-4 py-3 pr-10 text-sm focus:ring-2 focus:ring-amber-400 focus:border-transparent bg-white shadow-inner"
+                                        autocomplete="off">
+                                    <span class="absolute inset-y-0 right-3 flex items-center text-amber-500 pointer-events-none">
+                                        <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                                        </svg>
+                                    </span>
 
-                                        <!-- Dropdown button -->
-                                        <button type="button" id="material_code_toggle"
-                                            class="w-full rounded-b-xl border border-t-0 border-amber-100/70 px-4 py-3 text-sm bg-white hover:bg-amber-50 focus:ring-2 focus:ring-amber-400 focus:border-transparent shadow-inner text-left flex items-center justify-between">
-                                            <span id="material_code_selected" class="text-amber-700">Pilih Material Code</span>
-                                            <svg class="h-5 w-5 text-amber-500 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                                            </svg>
-                                        </button>
-
-                                        <!-- Dropdown options -->
-                                        <div id="material_code_dropdown" class="absolute z-50 w-full mt-1 bg-white border border-amber-100/70 rounded-xl shadow-lg max-h-60 overflow-y-auto hidden">
-                                            <div id="material_code_options" class="py-1">
-                                                @foreach($materials as $m)
-                                                    <div class="px-4 py-2 hover:bg-amber-50 cursor-pointer transition-colors material-option"
-                                                         data-value="{{ $m->material_code }}"
-                                                         data-text="{{ $m->material_code }} - {{ $m->description }}">
-                                                        <div class="font-medium text-amber-900">{{ $m->material_code }}</div>
-                                                        <div class="text-sm text-amber-700">{{ $m->description }}</div>
-                                                    </div>
-                                                @endforeach
-                                            </div>
+                                    <div id="material_code_dropdown" class="absolute z-50 w-full mt-1 bg-white border border-amber-100/70 rounded-xl shadow-lg max-h-60 overflow-y-auto hidden">
+                                        <div id="material_code_options" class="py-1">
+                                            @foreach($materials as $m)
+                                                <div class="px-4 py-2 hover:bg-amber-50 cursor-pointer transition-colors material-option"
+                                                     data-value="{{ $m->material_code }}"
+                                                     data-text="{{ $m->material_code }} - {{ $m->description }}">
+                                                    <div class="font-medium text-amber-900">{{ $m->material_code }}</div>
+                                                    <div class="text-sm text-amber-700">{{ $m->description }}</div>
+                                                </div>
+                                            @endforeach
                                         </div>
                                     </div>
                                 </div>
@@ -91,46 +74,29 @@
                             <div class="flex flex-col gap-2">
                                 <label for="npk" class="text-sm font-semibold text-amber-900 tracking-wide">NPK SAP *</label>
                                 <div class="relative">
-                                    <!-- Hidden input for form submission -->
                                     <input type="hidden" id="npk_hidden" name="npk" required>
 
-                                    <!-- Custom dropdown container -->
-                                    <div class="filament-dropdown">
-                                        <!-- Search input -->
-                                        <div class="relative">
-                                            <input type="text" id="npk_search"
-                                                placeholder="Cari NPK..."
-                                                class="w-full rounded-t-xl border border-amber-100/70 px-4 py-3 pr-10 text-sm focus:ring-2 focus:ring-amber-400 focus:border-transparent bg-white shadow-inner">
-                                            <div class="absolute inset-y-0 right-0 flex items-center pr-3">
-                                                <svg class="h-5 w-5 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                                                </svg>
-                                            </div>
-                                        </div>
+                                    <input type="text" id="npk_search" placeholder="Cari NPK..."
+                                        class="w-full rounded-xl border border-amber-100/70 px-4 py-3 pr-10 text-sm focus:ring-2 focus:ring-amber-400 focus:border-transparent bg-white shadow-inner"
+                                        autocomplete="off">
+                                    <span class="absolute inset-y-0 right-3 flex items-center text-amber-500 pointer-events-none">
+                                        <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                                        </svg>
+                                    </span>
 
-                                        <!-- Dropdown button -->
-                                        <button type="button" id="npk_toggle"
-                                            class="w-full rounded-b-xl border border-t-0 border-amber-100/70 px-4 py-3 text-sm bg-white hover:bg-amber-50 focus:ring-2 focus:ring-amber-400 focus:border-transparent shadow-inner text-left flex items-center justify-between">
-                                            <span id="npk_selected" class="text-amber-700">Pilih NPK SAP</span>
-                                            <svg class="h-5 w-5 text-amber-500 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                                            </svg>
-                                        </button>
-
-                                        <!-- Dropdown options -->
-                                        <div id="npk_dropdown" class="absolute z-50 w-full mt-1 bg-white border border-amber-100/70 rounded-xl shadow-lg max-h-60 overflow-y-auto hidden">
-                                            <div id="npk_options" class="py-1">
-                                                @foreach($pelanggans as $pel)
-                                                    <div class="px-4 py-2 hover:bg-amber-50 cursor-pointer transition-colors pelanggan-option"
-                                                         data-value="{{ $pel->npk }}"
-                                                         data-text="{{ $pel->npk }} @if($pel->nama) - {{ $pel->nama }}@endif">
-                                                        <div class="font-medium text-amber-900">{{ $pel->npk }}</div>
-                                                        @if($pel->nama)
-                                                            <div class="text-sm text-amber-700">{{ $pel->nama }}</div>
-                                                        @endif
-                                                    </div>
-                                                @endforeach
-                                            </div>
+                                    <div id="npk_dropdown" class="absolute z-50 w-full mt-1 bg-white border border-amber-100/70 rounded-xl shadow-lg max-h-60 overflow-y-auto hidden">
+                                        <div id="npk_options" class="py-1">
+                                            @foreach($pelanggans as $pel)
+                                                <div class="px-4 py-2 hover:bg-amber-50 cursor-pointer transition-colors pelanggan-option"
+                                                     data-value="{{ $pel->npk }}"
+                                                     data-text="{{ $pel->npk }} @if($pel->nama) - {{ $pel->nama }}@endif">
+                                                    <div class="font-medium text-amber-900">{{ $pel->npk }}</div>
+                                                    @if($pel->nama)
+                                                        <div class="text-sm text-amber-700">{{ $pel->nama }}</div>
+                                                    @endif
+                                                </div>
+                                            @endforeach
                                         </div>
                                     </div>
                                 </div>
@@ -139,10 +105,10 @@
                             <div class="flex flex-col gap-2">
                                 <label for="qty" class="text-sm font-semibold text-amber-900 tracking-wide">QTY DIAMBIL *</label>
                                 <div class="flex rounded-xl border border-amber-100/70 bg-white shadow-inner overflow-hidden">
-                                    <button type="button" id="qtyMinus" class="flex items-center justify-center w-12 text-amber-700 hover:bg-amber-50 transition">−</button>
+                                    <button type="button" id="qtyMinus" class="flex items-center justify-center w-12 text-red-600 hover:bg-red-50 transition">−</button>
                                     <input type="number" id="qty" name="qty" value="0" min="0"
                                         class="w-full text-center border-x border-amber-50/70 focus:ring-0 focus:border-transparent text-lg font-semibold text-amber-900">
-                                    <button type="button" id="qtyPlus" class="flex items-center justify-center w-12 text-amber-700 hover:bg-amber-50 transition">+</button>
+                                    <button type="button" id="qtyPlus" class="flex items-center justify-center w-12 text-red-600 hover:bg-red-50 transition">+</button>
                                 </div>
                             </div>
                         </div>
@@ -157,33 +123,18 @@
                             <div class="flex flex-col gap-2">
                                 <label for="planner" class="text-sm font-semibold text-amber-900 tracking-wide">PLANNER *</label>
                                 <div class="relative">
-                                    <!-- Hidden input for form submission -->
                                     <input type="hidden" id="planner_hidden" name="planner" required>
 
-                                    <!-- Custom dropdown container -->
-                                    <div class="filament-dropdown">
-                                        <!-- Search input -->
-                                        <div class="relative">
-                                            <input type="text" id="planner_search"
-                                                placeholder="Cari planner..."
-                                                class="w-full rounded-t-xl border border-amber-100/70 px-4 py-3 pr-10 text-sm focus:ring-2 focus:ring-amber-400 focus:border-transparent bg-white shadow-inner">
-                                            <div class="absolute inset-y-0 right-0 flex items-center pr-3">
-                                                <svg class="h-5 w-5 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                                                </svg>
-                                            </div>
-                                        </div>
+                                    <input type="text" id="planner_search" placeholder="Cari Planner..."
+                                        class="w-full rounded-xl border border-amber-100/70 px-4 py-3 pr-10 text-sm focus:ring-2 focus:ring-amber-400 focus:border-transparent bg-white shadow-inner"
+                                        autocomplete="off">
+                                    <span class="absolute inset-y-0 right-3 flex items-center text-amber-500 pointer-events-none">
+                                        <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                                        </svg>
+                                    </span>
 
-                                        <!-- Dropdown button -->
-                                        <button type="button" id="planner_toggle"
-                                            class="w-full rounded-b-xl border border-t-0 border-amber-100/70 px-4 py-3 text-sm bg-white hover:bg-amber-50 focus:ring-2 focus:ring-amber-400 focus:border-transparent shadow-inner text-left flex items-center justify-between">
-                                            <span id="planner_selected" class="text-amber-700">Pilih Planner</span>
-                                            <svg class="h-5 w-5 text-amber-500 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                                            </svg>
-                                        </button>
-
-                                        <!-- Dropdown options -->
+                                    <div id="planner_dropdown" class="absolute z-50 w-full mt-1 bg-white border border-amber-100/70 rounded-xl shadow-lg max-h-60 overflow-y-auto hidden">
                                         <div id="planner_dropdown" class="absolute z-50 w-full mt-1 bg-white border border-amber-100/70 rounded-xl shadow-lg max-h-60 overflow-y-auto hidden">
                                             <div id="planner_options" class="py-1">
                                                 @foreach($planners as $pl)
@@ -207,43 +158,26 @@
                             <div class="flex flex-col gap-2">
                                 <label for="pabrik" class="text-sm font-semibold text-amber-900 tracking-wide">PABRIK *</label>
                                 <div class="relative">
-                                    <!-- Hidden input for form submission -->
                                     <input type="hidden" id="pabrik_hidden" name="pabrik" required>
 
-                                    <!-- Custom dropdown container -->
-                                    <div class="filament-dropdown">
-                                        <!-- Search input -->
-                                        <div class="relative">
-                                            <input type="text" id="pabrik_search"
-                                                placeholder="Cari pabrik..."
-                                                class="w-full rounded-t-xl border border-amber-100/70 px-4 py-3 pr-10 text-sm focus:ring-2 focus:ring-amber-400 focus:border-transparent bg-white shadow-inner">
-                                            <div class="absolute inset-y-0 right-0 flex items-center pr-3">
-                                                <svg class="h-5 w-5 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                                                </svg>
-                                            </div>
-                                        </div>
+                                    <input type="text" id="pabrik_search" placeholder="Cari Pabrik..."
+                                        class="w-full rounded-xl border border-amber-100/70 px-4 py-3 pr-10 text-sm focus:ring-2 focus:ring-amber-400 focus:border-transparent bg-white shadow-inner"
+                                        autocomplete="off">
+                                    <span class="absolute inset-y-0 right-3 flex items-center text-amber-500 pointer-events-none">
+                                        <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                                        </svg>
+                                    </span>
 
-                                        <!-- Dropdown button -->
-                                        <button type="button" id="pabrik_toggle"
-                                            class="w-full rounded-b-xl border border-t-0 border-amber-100/70 px-4 py-3 text-sm bg-white hover:bg-amber-50 focus:ring-2 focus:ring-amber-400 focus:border-transparent shadow-inner text-left flex items-center justify-between">
-                                            <span id="pabrik_selected" class="text-amber-700">Pilih Pabrik</span>
-                                            <svg class="h-5 w-5 text-amber-500 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                                            </svg>
-                                        </button>
-
-                                        <!-- Dropdown options -->
-                                        <div id="pabrik_dropdown" class="absolute z-50 w-full mt-1 bg-white border border-amber-100/70 rounded-xl shadow-lg max-h-60 overflow-y-auto hidden">
-                                            <div id="pabrik_options" class="py-1">
-                                                @foreach($pabriks as $pb)
-                                                    <div class="px-4 py-2 hover:bg-amber-50 cursor-pointer transition-colors pabrik-option"
-                                                         data-value="{{ $pb->id }}"
-                                                         data-text="{{ $pb->nama_pabrik }}">
-                                                        <div class="font-medium text-amber-900">{{ $pb->nama_pabrik }}</div>
-                                                    </div>
-                                                @endforeach
-                                            </div>
+                                    <div id="pabrik_dropdown" class="absolute z-50 w-full mt-1 bg-white border border-amber-100/70 rounded-xl shadow-lg max-h-60 overflow-y-auto hidden">
+                                        <div id="pabrik_options" class="py-1">
+                                            @foreach($pabriks as $pb)
+                                                <div class="px-4 py-2 hover:bg-amber-50 cursor-pointer transition-colors pabrik-option"
+                                                     data-value="{{ $pb->id }}"
+                                                     data-text="{{ $pb->nama_pabrik }}">
+                                                    <div class="font-medium text-amber-900">{{ $pb->nama_pabrik }}</div>
+                                                </div>
+                                            @endforeach
                                         </div>
                                     </div>
                                 </div>
@@ -252,43 +186,26 @@
                             <div class="flex flex-col gap-2">
                                 <label for="area" class="text-sm font-semibold text-amber-900 tracking-wide">AREA *</label>
                                 <div class="relative">
-                                    <!-- Hidden input for form submission -->
                                     <input type="hidden" id="area_hidden" name="area" required>
 
-                                    <!-- Custom dropdown container -->
-                                    <div class="filament-dropdown">
-                                        <!-- Search input -->
-                                        <div class="relative">
-                                            <input type="text" id="area_search"
-                                                placeholder="Cari area..."
-                                                class="w-full rounded-t-xl border border-amber-100/70 px-4 py-3 pr-10 text-sm focus:ring-2 focus:ring-amber-400 focus:border-transparent bg-white shadow-inner">
-                                            <div class="absolute inset-y-0 right-0 flex items-center pr-3">
-                                                <svg class="h-5 w-5 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                                                </svg>
-                                            </div>
-                                        </div>
+                                    <input type="text" id="area_search" placeholder="Cari Area..."
+                                        class="w-full rounded-xl border border-amber-100/70 px-4 py-3 pr-10 text-sm focus:ring-2 focus:ring-amber-400 focus:border-transparent bg-white shadow-inner"
+                                        autocomplete="off">
+                                    <span class="absolute inset-y-0 right-3 flex items-center text-amber-500 pointer-events-none">
+                                        <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                                        </svg>
+                                    </span>
 
-                                        <!-- Dropdown button -->
-                                        <button type="button" id="area_toggle"
-                                            class="w-full rounded-b-xl border border-t-0 border-amber-100/70 px-4 py-3 text-sm bg-white hover:bg-amber-50 focus:ring-2 focus:ring-amber-400 focus:border-transparent shadow-inner text-left flex items-center justify-between">
-                                            <span id="area_selected" class="text-amber-700">Pilih Area</span>
-                                            <svg class="h-5 w-5 text-amber-500 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                                            </svg>
-                                        </button>
-
-                                        <!-- Dropdown options -->
-                                        <div id="area_dropdown" class="absolute z-50 w-full mt-1 bg-white border border-amber-100/70 rounded-xl shadow-lg max-h-60 overflow-y-auto hidden">
-                                            <div id="area_options" class="py-1">
-                                                @foreach($areas as $a)
-                                                    <div class="px-4 py-2 hover:bg-amber-50 cursor-pointer transition-colors area-option"
-                                                         data-value="{{ $a->id }}"
-                                                         data-text="{{ $a->nama_area }}">
-                                                        <div class="font-medium text-amber-900">{{ $a->nama_area }}</div>
-                                                    </div>
-                                                @endforeach
-                                            </div>
+                                    <div id="area_dropdown" class="absolute z-50 w-full mt-1 bg-white border border-amber-100/70 rounded-xl shadow-lg max-h-60 overflow-y-auto hidden">
+                                        <div id="area_options" class="py-1">
+                                            @foreach($areas as $a)
+                                                <div class="px-4 py-2 hover:bg-amber-50 cursor-pointer transition-colors area-option"
+                                                     data-value="{{ $a->id }}"
+                                                     data-text="{{ $a->nama_area }}">
+                                                    <div class="font-medium text-amber-900">{{ $a->nama_area }}</div>
+                                                </div>
+                                            @endforeach
                                         </div>
                                     </div>
                                 </div>
@@ -296,9 +213,9 @@
                         </div>
 
                         <div class="flex justify-end pt-2">
-                            <button type="submit" class="inline-flex items-center gap-2 bg-amber-600 text-white font-semibold px-6 sm:px-8 py-3 rounded-xl shadow-lg hover:bg-amber-500 transition focus:ring-4 focus:ring-amber-300">
+                            <button type="submit" class="inline-flex items-center gap-2 bg-orange-600 text-white font-bold px-6 sm:px-8 py-3 rounded-lg shadow-lg hover:bg-orange-700 transition focus:ring-4 focus:ring-orange-300">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v2.25a2.25 2.25 0 0 1-2.25 2.25H6.75a2.25 2.25 0 0 1-2.25-2.25v-2.25m0-4.5V7.5A2.25 2.25 0 0 1 6.75 5.25h10.5A2.25 2.25 0 0 1 19.5 7.5v2.25m-6 3 3-3m-3 3-3-3" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 10.5L12 3m0 0l9 7.5m-9-7.5v18" />
                                 </svg>
                                 Submit Permintaan
                             </button>
@@ -342,10 +259,8 @@
             constructor(dropdownId) {
                 this.dropdownId = dropdownId;
                 this.searchInput = document.getElementById(`${dropdownId}_search`);
-                this.toggleButton = document.getElementById(`${dropdownId}_toggle`);
                 this.dropdown = document.getElementById(`${dropdownId}_dropdown`);
                 this.optionsContainer = document.getElementById(`${dropdownId}_options`);
-                this.selectedSpan = document.getElementById(`${dropdownId}_selected`);
                 this.hiddenInput = document.getElementById(`${dropdownId}_hidden`);
                 this.optionClass = `${dropdownId.split('_')[0]}-option`; // material-option, npk-option, etc.
                 this.isOpen = false;
@@ -358,22 +273,26 @@
             }
 
             init() {
-                // Toggle dropdown on button click
-                this.toggleButton.addEventListener('click', (e) => {
+                // Open on focus or click
+                this.searchInput.addEventListener('focus', () => {
+                    console.log('Focus on', this.dropdownId);
+                    this.open();
+                });
+                this.searchInput.addEventListener('click', (e) => {
                     e.stopPropagation();
-                    this.toggle();
+                    console.log('Click on', this.dropdownId);
+                    this.open();
                 });
 
                 // Real-time search with debouncing
                 this.searchInput.addEventListener('input', () => {
+                    console.log('Input on', this.dropdownId, this.searchInput.value);
                     this.debouncedFilter();
                 });
 
                 // Close on outside click
                 document.addEventListener('click', (e) => {
-                    if (!this.toggleButton.contains(e.target) &&
-                        !this.dropdown.contains(e.target) &&
-                        !this.searchInput.contains(e.target)) {
+                    if (!this.dropdown.contains(e.target) && !this.searchInput.contains(e.target)) {
                         this.close();
                     }
                 });
@@ -382,13 +301,15 @@
                 this.optionsContainer.addEventListener('click', (e) => {
                     const option = e.target.closest(`.${this.optionClass}`);
                     if (option) {
+                        console.log('Selected option:', option.dataset.value);
                         this.selectOption(option);
                     }
                 });
 
-                // Keyboard navigation
+                // Keyboard navigation on input
                 this.searchInput.addEventListener('keydown', (e) => {
                     if (e.key === 'Escape') {
+                        e.preventDefault();
                         this.close();
                     } else if (e.key === 'Enter') {
                         e.preventDefault();
@@ -403,6 +324,7 @@
                     }
                 });
 
+                // Keyboard navigation on dropdown
                 this.dropdown.addEventListener('keydown', (e) => {
                     if (e.key === 'ArrowDown') {
                         e.preventDefault();
@@ -417,41 +339,28 @@
                             this.selectOption(focusedOption);
                         }
                     } else if (e.key === 'Escape') {
+                        e.preventDefault();
                         this.close();
                         this.searchInput.focus();
                     }
                 });
             }
 
-            toggle() {
-                if (this.isOpen) {
-                    this.close();
-                } else {
-                    this.open();
-                }
-            }
-
             open() {
                 this.dropdown.classList.remove('hidden');
                 this.isOpen = true;
-                this.updateArrowRotation();
                 // Focus search input when opening
                 setTimeout(() => this.searchInput.focus(), 10);
+
+                // If no options in container, show all options
+                if (this.optionsContainer.children.length === 0) {
+                    this.showAllOptions();
+                }
             }
 
             close() {
                 this.dropdown.classList.add('hidden');
                 this.isOpen = false;
-                this.updateArrowRotation();
-            }
-
-            updateArrowRotation() {
-                const arrow = this.toggleButton.querySelector('svg');
-                if (this.isOpen) {
-                    arrow.style.transform = 'rotate(180deg)';
-                } else {
-                    arrow.style.transform = 'rotate(0deg)';
-                }
             }
 
             filterOptions() {
@@ -586,14 +495,8 @@
                 // Update hidden input
                 this.hiddenInput.value = value;
 
-                // Update display text
-                this.selectedSpan.textContent = text;
-                this.selectedSpan.classList.remove('text-amber-700');
-                this.selectedSpan.classList.add('text-amber-900');
-
-                // Clear search and show all options
-                this.searchInput.value = '';
-                this.showAllOptions();
+                // Update display value
+                this.searchInput.value = text;
 
                 // Close dropdown
                 this.close();

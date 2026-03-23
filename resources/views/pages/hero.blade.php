@@ -30,50 +30,7 @@
         </div>
     </div>
 
-<style>
-    .hero-slide {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        opacity: 0;
-        transition: opacity 1s ease-in-out;
-    }
 
-    .hero-slide.active {
-        opacity: 1;
-    }
-
-    .slide-indicator.active {
-        background-color: white;
-        transform: scale(1.2);
-    }
-
-    @keyframes fadeInUp {
-        from {
-            opacity: 0;
-            transform: translateY(30px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    .animate-fade-in-up {
-        animation: fadeInUp 1s ease-out forwards;
-        opacity: 0;
-    }
-
-    .animation-delay-200 {
-        animation-delay: 0.2s;
-    }
-
-    .animation-delay-400 {
-        animation-delay: 0.4s;
-    }
-</style>
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
