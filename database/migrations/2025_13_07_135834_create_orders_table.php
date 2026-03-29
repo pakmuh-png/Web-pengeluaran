@@ -21,6 +21,7 @@ return new class extends Migration
             $table->foreignId('planner_id')->constrained()->onDelete('cascade');
             $table->timestamp('order_date');
             $table->integer('quantity');
+            $table->string('no_reservation');
             $table->enum('status', ['true', 'false'])->default('false');
             $table->enum('shift', ['rutin', 'ta'])->default('rutin');
             $table->timestamps();

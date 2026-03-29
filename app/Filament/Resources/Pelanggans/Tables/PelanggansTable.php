@@ -14,7 +14,8 @@ class PelanggansTable
     {
         return $table
             ->columns([
-                TextColumn::make('pabrik.id')
+                TextColumn::make('pabrik.nama_pabrik')
+                    ->label('Pabrik')
                     ->searchable(),
                 TextColumn::make('npk')
                     ->searchable(),
