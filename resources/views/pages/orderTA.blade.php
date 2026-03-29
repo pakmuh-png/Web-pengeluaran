@@ -24,8 +24,8 @@
                 <p class="mt-4 text-amber-100/90 text-sm sm:text-base max-w-2xl mx-auto font-medium leading-relaxed">Isi detail permintaan material berdasarkan data SAP dengan benar agar proses berjalan lancar dan efisien.</p>
             </div>
 
-            <div class="bg-white rounded-3xl shadow-[0_20px_50px_rgba(8,_112,_184,_0.07)] border border-slate-100 overflow-hidden relative">
-                <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-amber-400 to-orange-500"></div>
+            <div class="bg-white rounded-3xl shadow-[0_20px_50px_rgba(8,_112,_184,_0.07)] border border-slate-100 relative">
+                <div class="absolute top-0 left-0 w-full h-2 rounded-t-3xl bg-gradient-to-r from-amber-400 to-orange-500"></div>
                 <div class="px-6 py-10 sm:px-12 sm:py-12">
                     <form action="#" method="POST" class="space-y-6 text-slate-800">
                         @csrf
@@ -215,6 +215,92 @@
     </section>
 
     <script>
+        // --- Geolocation Check Config ---
+        @php
+            $setting = \App\Models\Setting::first() ?? new \App\Models\Setting([
+                'company_lat' => -6.200000,
+                'company_lng' => 106.816666,
+                'max_distance' => 500,
+            ]);
+        @endphp
+        const COMPANY_LAT = {{ $setting->company_lat }}; // Ganti dengan latitude perusahaan Anda
+        const COMPANY_LNG = {{ $setting->company_lng }}; // Ganti dengan longitude perusahaan Anda
+        const MAX_DISTANCE_METERS = {{ $setting->max_distance }}; // Jarak maksimal yang diperbolehkan (dalam meter)
+
+        function calculateDistance(lat1, lon1, lat2, lon2) {
+            const R = 6371e3; // Radius bumi dalam meter
+            const p1 = lat1 * Math.PI / 180;
+            const p2 = lat2 * Math.PI / 180;
+            const dp = (lat2 - lat1) * Math.PI / 180;
+            const dl = (lon2 - lon1) * Math.PI / 180;
+
+            const a = Math.sin(dp / 2) * Math.sin(dp / 2) +
+                Math.cos(p1) * Math.cos(p2) *
+                Math.sin(dl / 2) * Math.sin(dl / 2);
+            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+            return R * c;
+        }
+
+        function verifyLocation() {
+            const submitBtn = document.querySelector('button[type="submit"]');
+            if (submitBtn) {
+                if (!submitBtn.hasAttribute('data-original-text')) {
+                    submitBtn.setAttribute('data-original-text', submitBtn.innerHTML);
+                }
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = 'Memeriksa Lokasi...';
+            }
+
+            if ("geolocation" in navigator) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    const userLat = position.coords.latitude;
+                    const userLng = position.coords.longitude;
+                    const distance = calculateDistance(COMPANY_LAT, COMPANY_LNG, userLat, userLng);
+
+                    if (distance <= MAX_DISTANCE_METERS) {
+                        if (submitBtn) {
+                            submitBtn.disabled = false;
+                            submitBtn.innerHTML = submitBtn.getAttribute('data-original-text');
+                        }
+                    } else {
+                        Swal.fire({
+                            icon: 'warning',
+                            title: 'Di Luar Area',
+                            text: `Anda berada di luar area perusahaan. Jarak anda: ${Math.round(distance)} meter. Form ini hanya dapat diakses di dalam area perusahaan.`,
+                            confirmButtonColor: '#ea580c',
+                        });
+                        if (submitBtn) {
+                            submitBtn.innerHTML = 'Di Luar Area Perusahaan';
+                        }
+                    }
+                }, function(error) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Akses Lokasi Ditolak',
+                        text: 'Mohon izinkan akses lokasi pada browser Anda agar bisa mengisi form ini.',
+                        confirmButtonColor: '#ea580c',
+                    });
+                    if (submitBtn) {
+                        submitBtn.innerHTML = 'Lokasi Ditolak';
+                    }
+                }, {
+                    enableHighAccuracy: true
+                });
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Tidak Didukung',
+                    text: 'Browser anda tidak mendukung fitur geolokasi (GPS).',
+                    confirmButtonColor: '#ea580c',
+                });
+                if (submitBtn) {
+                    submitBtn.innerHTML = 'Fitur Lokasi Tidak Didukung';
+                }
+            }
+        }
+        // ---------------------------------
+
         const qtyInput = document.getElementById('qty');
         const qtyMinus = document.getElementById('qtyMinus');
         const qtyPlus = document.getElementById('qtyPlus');
@@ -521,6 +607,9 @@
 
         // Initialize all filament dropdowns
         document.addEventListener('DOMContentLoaded', function() {
+            // Verifikasi lokasi pengguna saat halaman dimuat
+            verifyLocation();
+
             const dropdowns = [
                 new FilamentDropdown('material_code'),
                 new FilamentDropdown('npk'),
