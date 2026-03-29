@@ -8,6 +8,7 @@ use App\Models\Pabrik;
 use App\Models\Area;
 use App\Models\Pelanggan;
 use App\Models\Planner;
+use App\Models\Order;
 
 class MainController extends Controller
 {
@@ -177,5 +178,44 @@ class MainController extends Controller
                     ->orderBy('nama_area')->limit(50)->get();
 
         return response()->json($areas);
+    }
+
+    public function postOrder(Request $request)
+    {
+        // Validate the incoming request data
+        $validatedData = $request->validate([
+            'material_code' => 'required|exists:materials,material_code',
+            'npk' => 'required|exists:pelanggans,npk',
+            'planner_id' => 'required|exists:planners,id',
+            'pabrik_id' => 'required|exists:pabriks,id',
+            'area_id' => 'required|exists:areas,id',
+            'quantity' => 'required|integer|min:1',
+            'no_reservation' => 'required|string|max:255',
+        ]);
+
+
+        if(now()->hour >= 7 && now()->hour < 15) {
+            $shift = 'rutin';
+        } else {
+            $shift = 'ta';
+        }
+
+        $pelanggan = Pelanggan::where('npk', $validatedData['npk'])->first();
+
+        $order = Order::create([
+            'order_code' => 'ORD-' . strtoupper(uniqid()),
+            'material_id' => Material::where('material_code', $validatedData['material_code'])->first()->id,
+            'pelanggan_id' => $pelanggan->id,
+            'area_id' => $validatedData['area_id'],
+            'pabrik_id' => $validatedData['pabrik_id'],
+            'order_date' => now(),
+            'quantity' => $validatedData['quantity'],
+            'no_reservation' => $validatedData['no_reservation'],
+            'status' => 'false',
+            'shift' => $shift,
+            'planner_id' => $validatedData['planner_id'],
+        ]);
+
+        return response()->json(['message' => 'Order placed successfully']);
     }
 }

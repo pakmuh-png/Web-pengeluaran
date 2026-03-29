@@ -38,6 +38,7 @@ class OrderFactory extends Factory
             'planner_id' => Planner::inRandomOrder()->first()->id ?? Planner::factory(),
             'order_date' => $this->faker->dateTimeBetween('-1 month', 'now'),
             'quantity' => $this->faker->numberBetween(1, 100),
+            'no_reservation' => $this->faker->bothify('RES-####-??'),
             'status' => $this->faker->randomElement(['true', 'false']),
             'shift' => $this->faker->randomElement(['rutin', 'ta']),
         ];

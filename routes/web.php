@@ -14,3 +14,5 @@ Route::get('/api/filter/planners', [MainController::class, 'filterPlanners']);
 Route::get('/api/filter/pabriks', [MainController::class, 'filterPabriks']);
 Route::get('/api/filter/areas', [MainController::class, 'filterAreas']);
 
+
+Route::post('/api/orders', [MainController::class, 'postOrder']);

@@ -7,46 +7,37 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Order TA</title>
     @vite(['resources/css/app.css'])
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
-<body class="bg-gradient-to-b from-[#362f1a] via-[#9e790b] to-[#C2B280] min-h-screen text-amber-950">
+<body class="bg-gray-50 min-h-screen text-slate-800 antialiased font-sans">
+    <div class="absolute top-0 left-0 right-0 h-[460px] bg-gradient-to-br from-[#362f1a] via-[#6d4c11] to-[#9e790b] z-0 shadow-2xl overflow-hidden rounded-b-[2rem]">
+        <div class="absolute inset-0 opacity-10 bg-[url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')]"></div>
+    </div>
     @include('components.navbar')
 
-    <section class="pt-28 pb-16">
+    <section class="relative z-10 pt-32 pb-16">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="mb-10 text-center">
-                <p class="text-sm uppercase tracking-[0.3em] text-amber-700">Form Order TA</p>
-                <h1 class="mt-2 text-3xl sm:text-4xl font-semibold text-amber-950 drop-shadow">Pengeluaran Material</h1>
-                <p class="mt-3 text-amber-800 text-sm sm:text-base">Isi detail permintaan sesuai data SAP agar proses berjalan lancar.</p>
+                <span class="inline-block py-1.5 px-5 rounded-full bg-white/10 backdrop-blur-md text-amber-50 text-xs font-bold tracking-[0.2em] mb-5 uppercase shadow-sm border border-white/20">FORM ORDER TA</span>
+                <h1 class="mt-2 text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight drop-shadow-xl">Pengeluaran Material</h1>
+                <p class="mt-4 text-amber-100/90 text-sm sm:text-base max-w-2xl mx-auto font-medium leading-relaxed">Isi detail permintaan material berdasarkan data SAP dengan benar agar proses berjalan lancar dan efisien.</p>
             </div>
 
-            <div class="bg-white/95 backdrop-blur-sm rounded-2xl shadow-2xl border border-amber-100/30">
-                <div class="px-6 sm:px-10 py-8">
+            <div class="bg-white rounded-3xl shadow-[0_20px_50px_rgba(8,_112,_184,_0.07)] border border-slate-100 overflow-hidden relative">
+                <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-amber-400 to-orange-500"></div>
+                <div class="px-6 py-10 sm:px-12 sm:py-12">
                     <form action="#" method="POST" class="space-y-6 text-slate-800">
                         @csrf
 
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                             <div class="flex flex-col gap-2">
-                                <label for="tanggal" class="text-sm font-semibold text-amber-900 tracking-wide">TANGGAL *</label>
-                                <div class="relative">
-                                    <input type="datetime-local" id="tanggal" name="tanggal"
-                                        class="w-full rounded-xl border border-amber-100/70 px-4 py-3 text-sm focus:ring-2 focus:ring-amber-400 focus:border-transparent bg-white shadow-inner"
-                                        required>
-                                    <span class="absolute inset-y-0 right-4 flex items-center text-amber-500">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 9h18M4.5 7.5h15a1.5 1.5 0 0 1 1.5 1.5v11.25A1.5 1.5 0 0 1 19.5 21H4.5A1.5 1.5 0 0 1 3 19.5V9A1.5 1.5 0 0 1 4.5 7.5Z" />
-                                        </svg>
-                                    </span>
-                                </div>
-                            </div>
-
-                            <div class="flex flex-col gap-2">
-                                <label for="material_code" class="text-sm font-semibold text-amber-900 tracking-wide">MATERIAL CODE SAP *</label>
+                                <label for="material_code" class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-1.5">MATERIAL CODE SAP <span class="text-red-500">*</span></label>
                                 <div class="relative">
                                     <input type="hidden" id="material_code_hidden" name="material_code" required>
 
                                     <input type="text" id="material_code_search" placeholder="Cari Material Code..."
-                                        class="w-full rounded-xl border border-amber-100/70 px-4 py-3 pr-10 text-sm focus:ring-2 focus:ring-amber-400 focus:border-transparent bg-white shadow-inner"
+                                        class="w-full rounded-xl border border-slate-200 px-4 py-3 pr-10 text-sm focus:ring-2 focus:ring-amber-500 focus:border-amber-500 bg-slate-50 hover:bg-slate-100 focus:bg-white transition-all shadow-sm"
                                         autocomplete="off">
                                     <span class="absolute inset-y-0 right-3 flex items-center text-amber-500 pointer-events-none">
                                         <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -54,13 +45,13 @@
                                         </svg>
                                     </span>
 
-                                    <div id="material_code_dropdown" class="absolute z-50 w-full mt-1 bg-white border border-amber-100/70 rounded-xl shadow-lg max-h-60 overflow-y-auto hidden">
+                                    <div id="material_code_dropdown" class="absolute z-50 w-full mt-2 bg-white border border-slate-100 rounded-xl shadow-xl max-h-60 overflow-y-auto hidden ring-1 ring-black ring-opacity-5">
                                         <div id="material_code_options" class="py-1">
                                             @foreach($materials as $m)
-                                                <div class="px-4 py-2 hover:bg-amber-50 cursor-pointer transition-colors material-option"
+                                                <div class="px-4 py-2 hover:bg-slate-50 cursor-pointer transition-colors border-b border-slate-50 last:border-0 material-option"
                                                      data-value="{{ $m->material_code }}"
                                                      data-text="{{ $m->material_code }} - {{ $m->description }}">
-                                                    <div class="font-medium text-amber-900">{{ $m->material_code }}</div>
+                                                    <div class="font-semibold text-slate-800">{{ $m->material_code }}</div>
                                                     <div class="text-sm text-amber-700">{{ $m->description }}</div>
                                                 </div>
                                             @endforeach
@@ -68,16 +59,14 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                             <div class="flex flex-col gap-2">
-                                <label for="npk" class="text-sm font-semibold text-amber-900 tracking-wide">NPK SAP *</label>
+                                <label for="npk" class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-1.5">NPK SAP <span class="text-red-500">*</span></label>
                                 <div class="relative">
                                     <input type="hidden" id="npk_hidden" name="npk" required>
 
                                     <input type="text" id="npk_search" placeholder="Cari NPK..."
-                                        class="w-full rounded-xl border border-amber-100/70 px-4 py-3 pr-10 text-sm focus:ring-2 focus:ring-amber-400 focus:border-transparent bg-white shadow-inner"
+                                        class="w-full rounded-xl border border-slate-200 px-4 py-3 pr-10 text-sm focus:ring-2 focus:ring-amber-500 focus:border-amber-500 bg-slate-50 hover:bg-slate-100 focus:bg-white transition-all shadow-sm"
                                         autocomplete="off">
                                     <span class="absolute inset-y-0 right-3 flex items-center text-amber-500 pointer-events-none">
                                         <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -85,13 +74,13 @@
                                         </svg>
                                     </span>
 
-                                    <div id="npk_dropdown" class="absolute z-50 w-full mt-1 bg-white border border-amber-100/70 rounded-xl shadow-lg max-h-60 overflow-y-auto hidden">
+                                    <div id="npk_dropdown" class="absolute z-50 w-full mt-2 bg-white border border-slate-100 rounded-xl shadow-xl max-h-60 overflow-y-auto hidden ring-1 ring-black ring-opacity-5">
                                         <div id="npk_options" class="py-1">
                                             @foreach($pelanggans as $pel)
-                                                <div class="px-4 py-2 hover:bg-amber-50 cursor-pointer transition-colors pelanggan-option"
+                                                <div class="px-4 py-2 hover:bg-slate-50 cursor-pointer transition-colors border-b border-slate-50 last:border-0 npk-option"
                                                      data-value="{{ $pel->npk }}"
                                                      data-text="{{ $pel->npk }} @if($pel->nama) - {{ $pel->nama }}@endif">
-                                                    <div class="font-medium text-amber-900">{{ $pel->npk }}</div>
+                                                    <div class="font-semibold text-slate-800">{{ $pel->npk }}</div>
                                                     @if($pel->nama)
                                                         <div class="text-sm text-amber-700">{{ $pel->nama }}</div>
                                                     @endif
@@ -101,9 +90,11 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
 
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                             <div class="flex flex-col gap-2">
-                                <label for="qty" class="text-sm font-semibold text-amber-900 tracking-wide">QTY DIAMBIL *</label>
+                                <label for="qty" class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-1.5">QTY DIAMBIL <span class="text-red-500">*</span></label>
                                 <div class="flex rounded-xl border border-amber-100/70 bg-white shadow-inner overflow-hidden">
                                     <button type="button" id="qtyMinus" class="flex items-center justify-center w-12 text-red-600 hover:bg-red-50 transition">−</button>
                                     <input type="number" id="qty" name="qty" value="0" min="0"
@@ -111,22 +102,22 @@
                                     <button type="button" id="qtyPlus" class="flex items-center justify-center w-12 text-red-600 hover:bg-red-50 transition">+</button>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                             <div class="flex flex-col gap-2">
-                                <label for="no_equip" class="text-sm font-semibold text-amber-900 tracking-wide">NO. EQUIP / NO. WO / RESERVASI *</label>
-                                <input type="text" id="no_equip" name="no_equip" placeholder="Contoh: EQ-23001 / WO-7788 / RSV-9900"
+                                <label for="no_equip" class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-1.5">NO. EQUIP / NO. WO / RESERVASI <span class="text-red-500">*</span></label>
+                                <input type="text" id="no_equip" name="no_reservation" placeholder="Contoh: EQ-23001 / WO-7788 / RSV-9900"
                                     class="w-full rounded-xl border border-amber-100/70 px-4 py-3 text-sm focus:ring-2 focus:ring-amber-400 focus:border-transparent bg-white shadow-inner" required>
                             </div>
+                        </div>
 
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                             <div class="flex flex-col gap-2">
-                                <label for="planner" class="text-sm font-semibold text-amber-900 tracking-wide">PLANNER *</label>
+                                <label for="planner" class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-1.5">PLANNER <span class="text-red-500">*</span></label>
                                 <div class="relative">
-                                    <input type="hidden" id="planner_hidden" name="planner" required>
+                                    <input type="hidden" id="planner_hidden" name="planner_id" required>
 
                                     <input type="text" id="planner_search" placeholder="Cari Planner..."
-                                        class="w-full rounded-xl border border-amber-100/70 px-4 py-3 pr-10 text-sm focus:ring-2 focus:ring-amber-400 focus:border-transparent bg-white shadow-inner"
+                                        class="w-full rounded-xl border border-slate-200 px-4 py-3 pr-10 text-sm focus:ring-2 focus:ring-amber-500 focus:border-amber-500 bg-slate-50 hover:bg-slate-100 focus:bg-white transition-all shadow-sm"
                                         autocomplete="off">
                                     <span class="absolute inset-y-0 right-3 flex items-center text-amber-500 pointer-events-none">
                                         <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -134,20 +125,46 @@
                                         </svg>
                                     </span>
 
-                                    <div id="planner_dropdown" class="absolute z-50 w-full mt-1 bg-white border border-amber-100/70 rounded-xl shadow-lg max-h-60 overflow-y-auto hidden">
-                                        <div id="planner_dropdown" class="absolute z-50 w-full mt-1 bg-white border border-amber-100/70 rounded-xl shadow-lg max-h-60 overflow-y-auto hidden">
-                                            <div id="planner_options" class="py-1">
-                                                @foreach($planners as $pl)
-                                                    <div class="px-4 py-2 hover:bg-amber-50 cursor-pointer transition-colors planner-option"
-                                                         data-value="{{ $pl->id }}"
-                                                         data-text="{{ $pl->name }} @if($pl->phone) - {{ $pl->phone }}@endif">
-                                                        <div class="font-medium text-amber-900">{{ $pl->name }}</div>
-                                                        @if($pl->phone)
-                                                            <div class="text-sm text-amber-700">{{ $pl->phone }}</div>
-                                                        @endif
-                                                    </div>
-                                                @endforeach
-                                            </div>
+                                    <div id="planner_dropdown" class="absolute z-50 w-full mt-2 bg-white border border-slate-100 rounded-xl shadow-xl max-h-60 overflow-y-auto hidden ring-1 ring-black ring-opacity-5">
+                                        <div id="planner_options" class="py-1">
+                                            @foreach($planners as $pl)
+                                                <div class="px-4 py-2 hover:bg-slate-50 cursor-pointer transition-colors border-b border-slate-50 last:border-0 planner-option"
+                                                     data-value="{{ $pl->id }}"
+                                                     data-text="{{ $pl->name }} @if($pl->phone) - {{ $pl->phone }}@endif">
+                                                    <div class="font-semibold text-slate-800">{{ $pl->name }}</div>
+                                                    @if($pl->phone)
+                                                        <div class="text-sm text-amber-700">{{ $pl->phone }}</div>
+                                                    @endif
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="flex flex-col gap-2">
+                                <label for="pabrik" class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-1.5">PABRIK <span class="text-red-500">*</span></label>
+                                <div class="relative">
+                                    <input type="hidden" id="pabrik_hidden" name="pabrik_id" required>
+
+                                    <input type="text" id="pabrik_search" placeholder="Cari Pabrik..."
+                                        class="w-full rounded-xl border border-slate-200 px-4 py-3 pr-10 text-sm focus:ring-2 focus:ring-amber-500 focus:border-amber-500 bg-slate-50 hover:bg-slate-100 focus:bg-white transition-all shadow-sm"
+                                        autocomplete="off">
+                                    <span class="absolute inset-y-0 right-3 flex items-center text-amber-500 pointer-events-none">
+                                        <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                                        </svg>
+                                    </span>
+
+                                    <div id="pabrik_dropdown" class="absolute z-50 w-full mt-2 bg-white border border-slate-100 rounded-xl shadow-xl max-h-60 overflow-y-auto hidden ring-1 ring-black ring-opacity-5">
+                                        <div id="pabrik_options" class="py-1">
+                                            @foreach($pabriks as $pb)
+                                                <div class="px-4 py-2 hover:bg-slate-50 cursor-pointer transition-colors border-b border-slate-50 last:border-0 pabrik-option"
+                                                     data-value="{{ $pb->id }}"
+                                                     data-text="{{ $pb->nama_pabrik }}">
+                                                    <div class="font-semibold text-slate-800">{{ $pb->nama_pabrik }}</div>
+                                                </div>
+                                            @endforeach
                                         </div>
                                     </div>
                                 </div>
@@ -156,40 +173,12 @@
 
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                             <div class="flex flex-col gap-2">
-                                <label for="pabrik" class="text-sm font-semibold text-amber-900 tracking-wide">PABRIK *</label>
+                                <label for="area" class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-1.5">AREA <span class="text-red-500">*</span></label>
                                 <div class="relative">
-                                    <input type="hidden" id="pabrik_hidden" name="pabrik" required>
-
-                                    <input type="text" id="pabrik_search" placeholder="Cari Pabrik..."
-                                        class="w-full rounded-xl border border-amber-100/70 px-4 py-3 pr-10 text-sm focus:ring-2 focus:ring-amber-400 focus:border-transparent bg-white shadow-inner"
-                                        autocomplete="off">
-                                    <span class="absolute inset-y-0 right-3 flex items-center text-amber-500 pointer-events-none">
-                                        <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                                        </svg>
-                                    </span>
-
-                                    <div id="pabrik_dropdown" class="absolute z-50 w-full mt-1 bg-white border border-amber-100/70 rounded-xl shadow-lg max-h-60 overflow-y-auto hidden">
-                                        <div id="pabrik_options" class="py-1">
-                                            @foreach($pabriks as $pb)
-                                                <div class="px-4 py-2 hover:bg-amber-50 cursor-pointer transition-colors pabrik-option"
-                                                     data-value="{{ $pb->id }}"
-                                                     data-text="{{ $pb->nama_pabrik }}">
-                                                    <div class="font-medium text-amber-900">{{ $pb->nama_pabrik }}</div>
-                                                </div>
-                                            @endforeach
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="flex flex-col gap-2">
-                                <label for="area" class="text-sm font-semibold text-amber-900 tracking-wide">AREA *</label>
-                                <div class="relative">
-                                    <input type="hidden" id="area_hidden" name="area" required>
+                                    <input type="hidden" id="area_hidden" name="area_id" required>
 
                                     <input type="text" id="area_search" placeholder="Cari Area..."
-                                        class="w-full rounded-xl border border-amber-100/70 px-4 py-3 pr-10 text-sm focus:ring-2 focus:ring-amber-400 focus:border-transparent bg-white shadow-inner"
+                                        class="w-full rounded-xl border border-slate-200 px-4 py-3 pr-10 text-sm focus:ring-2 focus:ring-amber-500 focus:border-amber-500 bg-slate-50 hover:bg-slate-100 focus:bg-white transition-all shadow-sm"
                                         autocomplete="off">
                                     <span class="absolute inset-y-0 right-3 flex items-center text-amber-500 pointer-events-none">
                                         <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -197,28 +186,27 @@
                                         </svg>
                                     </span>
 
-                                    <div id="area_dropdown" class="absolute z-50 w-full mt-1 bg-white border border-amber-100/70 rounded-xl shadow-lg max-h-60 overflow-y-auto hidden">
+                                    <div id="area_dropdown" class="absolute z-50 w-full mt-2 bg-white border border-slate-100 rounded-xl shadow-xl max-h-60 overflow-y-auto hidden ring-1 ring-black ring-opacity-5">
                                         <div id="area_options" class="py-1">
                                             @foreach($areas as $a)
-                                                <div class="px-4 py-2 hover:bg-amber-50 cursor-pointer transition-colors area-option"
+                                                <div class="px-4 py-2 hover:bg-slate-50 cursor-pointer transition-colors border-b border-slate-50 last:border-0 area-option"
                                                      data-value="{{ $a->id }}"
                                                      data-text="{{ $a->nama_area }}">
-                                                    <div class="font-medium text-amber-900">{{ $a->nama_area }}</div>
+                                                    <div class="font-semibold text-slate-800">{{ $a->nama_area }}</div>
                                                 </div>
                                             @endforeach
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="flex justify-end pt-2">
-                            <button type="submit" class="inline-flex items-center gap-2 bg-orange-600 text-white font-bold px-6 sm:px-8 py-3 rounded-lg shadow-lg hover:bg-orange-700 transition focus:ring-4 focus:ring-orange-300">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 10.5L12 3m0 0l9 7.5m-9-7.5v18" />
-                                </svg>
-                                Submit Permintaan
-                            </button>
+                            <div class="flex flex-col justify-end pt-2">
+                                <button type="submit" class="inline-flex justify-center items-center gap-2 bg-gradient-to-r from-orange-600 to-amber-600 text-white font-bold px-6 sm:px-8 py-3.5 rounded-xl shadow-lg shadow-orange-600/30 hover:shadow-orange-600/50 hover:from-orange-500 hover:to-amber-500 transform hover:-translate-y-0.5 transition-all duration-200 focus:ring-4 focus:ring-orange-500/50 w-full mt-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 10.5L12 3m0 0l9 7.5m-9-7.5v18" />
+                                    </svg>
+                                    Submit Permintaan
+                                </button>
+                            </div>
                         </div>
                     </form>
                 </div>
@@ -402,41 +390,41 @@
                     // Add filtered options from API
                     data.forEach(item => {
                         const option = document.createElement('div');
-                        option.className = `${this.optionClass} px-4 py-2 hover:bg-amber-50 cursor-pointer transition-colors`;
+                        option.className = `${this.optionClass} px-4 py-2 hover:bg-slate-50 cursor-pointer transition-colors border-b border-slate-50 last:border-0`;
                         option.setAttribute('tabindex', '0');
 
                         if (this.dropdownId === 'material_code') {
                             option.setAttribute('data-value', item.material_code);
                             option.setAttribute('data-text', `${item.material_code} - ${item.description}`);
                             option.innerHTML = `
-                                <div class="font-medium text-amber-900">${item.material_code}</div>
+                                <div class="font-semibold text-slate-800">${item.material_code}</div>
                                 <div class="text-sm text-amber-700">${item.description}</div>
                             `;
                         } else if (this.dropdownId === 'npk') {
                             option.setAttribute('data-value', item.npk);
                             option.setAttribute('data-text', `${item.npk}${item.nama ? ' - ' + item.nama : ''}`);
                             option.innerHTML = `
-                                <div class="font-medium text-amber-900">${item.npk}</div>
+                                <div class="font-semibold text-slate-800">${item.npk}</div>
                                 ${item.nama ? `<div class="text-sm text-amber-700">${item.nama}</div>` : ''}
                             `;
                         } else if (this.dropdownId === 'planner') {
                             option.setAttribute('data-value', item.id);
                             option.setAttribute('data-text', `${item.name}${item.phone ? ' - ' + item.phone : ''}`);
                             option.innerHTML = `
-                                <div class="font-medium text-amber-900">${item.name}</div>
+                                <div class="font-semibold text-slate-800">${item.name}</div>
                                 ${item.phone ? `<div class="text-sm text-amber-700">${item.phone}</div>` : ''}
                             `;
                         } else if (this.dropdownId === 'pabrik') {
                             option.setAttribute('data-value', item.id);
                             option.setAttribute('data-text', item.nama_pabrik);
                             option.innerHTML = `
-                                <div class="font-medium text-amber-900">${item.nama_pabrik}</div>
+                                <div class="font-semibold text-slate-800">${item.nama_pabrik}</div>
                             `;
                         } else if (this.dropdownId === 'area') {
                             option.setAttribute('data-value', item.id);
                             option.setAttribute('data-text', item.nama_area);
                             option.innerHTML = `
-                                <div class="font-medium text-amber-900">${item.nama_area}</div>
+                                <div class="font-semibold text-slate-800">${item.nama_area}</div>
                             `;
                         }
 
@@ -465,7 +453,7 @@
                 const originalOptions = this.getOriginalOptions();
                 originalOptions.forEach(optionData => {
                     const option = document.createElement('div');
-                    option.className = `${this.optionClass} px-4 py-2 hover:bg-amber-50 cursor-pointer transition-colors`;
+                    option.className = `${this.optionClass} px-4 py-2 hover:bg-slate-50 cursor-pointer transition-colors border-b border-slate-50 last:border-0`;
                     option.setAttribute('tabindex', '0');
                     option.setAttribute('data-value', optionData.value);
                     option.setAttribute('data-text', optionData.text);
@@ -543,6 +531,84 @@
 
             // Store dropdown instances globally for debugging
             window.filamentDropdowns = dropdowns;
+
+            // Handle form submission
+            const form = document.querySelector('form');
+            form.addEventListener('submit', async function(e) {
+                e.preventDefault();
+
+                const submitBtn = form.querySelector('button[type="submit"]');
+                const originalBtnText = submitBtn.innerHTML;
+
+                // Show loading state
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = `
+                    <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    Memproses...
+                `;
+
+                try {
+                    const formData = new FormData(form);
+                    formData.set('quantity', formData.get('qty'));
+
+                    const response = await fetch('/api/orders', {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'X-Requested-With': 'XMLHttpRequest'
+                        }
+                    });
+
+                    const data = await response.json();
+
+                    if (response.ok) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Berhasil!',
+                            text: data.message || 'Permintaan material berhasil disubmit.',
+                            confirmButtonColor: '#ea580c',
+                            background: '#ffedd5',
+                            color: '#78350f'
+                        }).then(() => {
+                            // Reset form and UI
+                            form.reset();
+                            document.querySelectorAll('[id$="_search"]').forEach(input => input.value = '');
+                            document.querySelectorAll('[id$="_hidden"]').forEach(input => input.value = '');
+                        });
+                    } else {
+                        // Handle validation errors
+                        let errorMessage = data.message || 'Terjadi kesalahan saat memproses permintaan.';
+                        if (data.errors) {
+                            errorMessage = Object.values(data.errors).flat().join('\n');
+                        }
+
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Gagal!',
+                            text: errorMessage,
+                            confirmButtonColor: '#ea580c',
+                            background: '#fee2e2',
+                            color: '#991b1b'
+                        });
+                    }
+                } catch (error) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Terjadi Kesalahan!',
+                        text: 'Tidak dapat terhubung ke server. Silakan coba beberapa saat lagi.',
+                        confirmButtonColor: '#ea580c',
+                        background: '#fee2e2',
+                        color: '#991b1b'
+                    });
+                } finally {
+                    // Restore button state
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = originalBtnText;
+                }
+            });
         });
     </script>
 </body>
